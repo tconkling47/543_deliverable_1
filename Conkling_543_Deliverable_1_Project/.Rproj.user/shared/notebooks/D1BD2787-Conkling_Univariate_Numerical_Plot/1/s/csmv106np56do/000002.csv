@@ -1,0 +1,4 @@
+"0","bar7 = bar6 + theme("
+"0","    plot.title = element_text(face = 'bold', size = 18)"
+"0","  ) "
+"0","bar7"

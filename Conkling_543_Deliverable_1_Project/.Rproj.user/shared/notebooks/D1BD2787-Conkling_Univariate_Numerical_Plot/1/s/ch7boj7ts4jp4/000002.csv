@@ -1,0 +1,2 @@
+"0","bar4 = bar3 + scale_fill_manual(values=c(""grey60"", ""#E67E22"")) + scale_color_manual(values=c('black', 'black'))"
+"0","bar4"

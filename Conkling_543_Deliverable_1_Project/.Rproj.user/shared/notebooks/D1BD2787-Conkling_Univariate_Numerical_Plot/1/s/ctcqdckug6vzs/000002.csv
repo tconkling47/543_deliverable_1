@@ -1,0 +1,7 @@
+"0","titleText='A Majority of all U.S. Higher Education Institutions are in Ten States'"
+"0","sourceText='Source: US Department of Education'"
+"0","bar5 = bar4 + labs(title=titleText,"
+"0","                   x='State or Territory Abbreviation',"
+"0","                   y= 'Cumulative Number of Colleges and Universities',"
+"0","                   caption = sourceText)"
+"0","bar5"

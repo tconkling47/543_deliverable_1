@@ -1,32 +1,29 @@
 ---
-title: "Conkling_Univariate Numerical Plot"
-output: html_notebook
+title: 'Conkling, PUBPOL 543; Deliverable 1: Univariate Plot'
+output:
+  html_document:
+    df_print: paged
 ---
-
-```{r getData, eval=FALSE}
-link='https://github.com/EvansDataScience/data/raw/master/eduwa.rda'
-
-#getting the data TABLE from the file in the cloud:
-load(file=url(link))
-```
-
 
 
 ```{r}
 #Load College Scorecard
 library(readxl)
-college_scorecard_19_20 <- read.csv("C:/Users/thoma/OneDrive/Desktop/543_coursework/Univariate Number Plot/college scorecard_19-20.csv")
-View(college_scorecard_19_20)
+college_scorecard_19_20 <- read.csv("https://raw.githubusercontent.com/tconkling47/543_deliverable_1/main/college_scorecard_19-20.csv")
 ```
 
-###load tidyverse & ggplot
+### Load tidyverse & ggplot & ggthemes & scales
+
 ```{r}
 library(tidyverse)
 library(ggplot2)
+library(scales)
+library(ggthemes)
 ```
 
 
-###Create a pivot table with the number of universities per state
+### Create a pivot table with the number of universities per state
+
 ```{r}
 colleges_simplified <- college_scorecard_19_20 %>%
   select(INSTNM, CITY, STABBR) %>%
@@ -38,7 +35,8 @@ colleges_by_state = aggregate(data=colleges_simplified,
 colleges_by_state=colleges_by_state[order(-colleges_by_state$college_count),]
 ```
 
-###Add percent, cumulative percent, and cumulative count columns
+### Add percent, cumulative percent, and cumulative count columns
+
 ```{r}
 total_colleges = sum(colleges_by_state$college_count)
 colleges_by_state <- colleges_by_state %>%
@@ -47,7 +45,7 @@ colleges_by_state <- colleges_by_state %>%
   mutate(CollegesCumSum = cumsum(college_count))
 ```
 
-###Do initial plot, put in descending order
+### Do initial plot, put in descending order
 ```{r}
 base = ggplot(data=colleges_by_state,
               aes(x=STABBR, CollegesCumSum)) + theme_classic() + scale_x_discrete(limits = colleges_by_state$STABBR)
@@ -58,8 +56,10 @@ bar2 = base + geom_bar(stat = "identity") + coord_flip()
 bar2
 ```
 
-###Use color to highlight where a majority of colleges and universities are
-#### Note: In calculating cumulative sums, adding Georgia puts the cumulative percent from 48% to 50.5%, so 51% is used to show a majority.
+### Use color to highlight where a majority of colleges and universities are
+
+#### Note: In calculating cumulative sums, adding Georgia puts the cumulative percent from 48% to 50.5%, so 51% is the cutoff used to show a majority.
+
 ```{r}
 bar3 = base + geom_bar(stat = "identity",color='grey90',
                       aes(fill=PercentCum<0.51), 
@@ -68,12 +68,15 @@ bar3
 ```
 
 
-###Change the colors on the graph showing where 50% of colleges/universities are
+### Change the colors on the graph showing where 50% of colleges/universities are
+
 ```{r}
 bar4 = bar3 + scale_fill_manual(values=c("grey60", "#E67E22")) + scale_color_manual(values=c('black', 'black'))
 bar4
 ```
+
 ### Adding title and source
+
 ```{r}
 titleText='A Majority of all U.S. Higher Education Institutions are in Ten States'
 sourceText='Source: US Department of Education'
@@ -84,13 +87,8 @@ bar5 = bar4 + labs(title=titleText,
 bar5
 ```
 
-```{r}
-#load scales
-library(scales)
-```
+### Reposition Title and Source Text, customize axis
 
-
-###Reposition Title and Source Text, customize axis
 ```{r}
 bar6 = bar5 + theme(plot.caption = element_text(hjust = 0),
                     plot.title = element_text(hjust = 0.5)) + scale_y_continuous(breaks=c(0,1000, 2000, 3000, 4000, 5000, 6000),
@@ -100,7 +98,8 @@ bar6
 ```
 
 
-###Add bold face to tile and to 
+### Add bold face to tile and increase title size
+
 ```{r}
 bar7 = bar6 + theme(
     plot.title = element_text(face = 'bold', size = 18)
@@ -108,14 +107,16 @@ bar7 = bar6 + theme(
 bar7
 ```
 
-###Add bold face to the names of the states that constitute 50% of higher education institutions
+### Add bold face to the names of the states that constitute 50% of higher education institutions
+
 ```{r}
 states_51=colleges_by_state[colleges_by_state$PercentCum<0.51,"STABBR"]
 bar8=bar7 + theme(axis.text.y = element_text(face=ifelse(colleges_by_state$STABBR%in%states_51,"bold","plain"),size=8))
 bar8
 ```
 
-###Generate Labels ONLY for the bars that create a majority of colleges/universities
+### Generate Labels ONLY for the bars that create a majority of colleges/universities
+
 ```{r}
 bar_labels <- colleges_by_state %>%
   mutate(bar_labels= ifelse(PercentCum<0.51, PercentCum, NA)) %>%
@@ -127,7 +128,8 @@ bar_labels5 <- replace(bar_labels4, c(11:59), NA)
 ```
 
 
-###label the bars that create a majority of colleges/universities
+### Label the bars that create a majority of colleges/universities
+
 ```{r}
 bar9 = bar8 + geom_text(hjust= 0,
                         vjust = 0.3,
@@ -136,14 +138,10 @@ bar9 = bar8 + geom_text(hjust= 0,
                         aes(label = bar_labels5))
 bar9
 ```
-```{r}
-#load ggthemes
-library(ggthemes)
-```
 
 
+### Make the X and Y Axis Labels Bigger
 
-###Make the X and Y Axis Labels Bigger
 ```{r}
 bar10 = bar9 + theme(
   axis.title = element_text(size=14)
@@ -155,7 +153,8 @@ bar10
 
 
 
-#This Graph needs to be quite large in order to work. I make sure to export the graph with sufficient size.
+# This Graph needs to be quite large in order to work. I make sure to export the graph with sufficient size.
+
 ```{r}
 #export image
 bar10

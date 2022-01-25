@@ -1,0 +1,7 @@
+"0","states_51=colleges_by_state[colleges_by_state$PercentCum<0.51,""STABBR""]"
+"0","bar8=bar7 + theme(axis.text.y = element_text(face=ifelse(colleges_by_state$STABBR%in%states_51,""bold"",""plain""),size=8))"
+"2","Warning:"
+"2"," Vectorized input to `element_text()` is not officially supported.
+Results may be unexpected or may change in future versions of ggplot2.
+"
+"0","bar8"

@@ -1,0 +1,5 @@
+"0","total_colleges = sum(colleges_by_state$college_count)"
+"0","colleges_by_state <- colleges_by_state %>%"
+"0","  mutate(Percent = college_count/total_colleges) %>%"
+"0","  mutate(PercentCum = cumsum(Percent)) %>%"
+"0","  mutate(CollegesCumSum = cumsum(college_count))"

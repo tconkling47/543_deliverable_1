@@ -1,0 +1,3 @@
+"0","#flip it"
+"0","bar2 = base + geom_bar(stat = ""identity"") + coord_flip()"
+"0","bar2"

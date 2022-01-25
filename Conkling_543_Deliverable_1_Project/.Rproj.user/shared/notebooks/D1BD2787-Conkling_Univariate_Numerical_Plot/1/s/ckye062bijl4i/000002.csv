@@ -1,0 +1,7 @@
+"0","bar_labels <- colleges_by_state %>%"
+"0","  mutate(bar_labels= ifelse(PercentCum<0.51, PercentCum, NA)) %>%"
+"0","  select(bar_labels)"
+"0","bar_labels2 <- as.vector(bar_labels$bar_labels)"
+"0","bar_labels3 <- round(bar_labels2*100, digits = 1)"
+"0","bar_labels4 <- paste0(bar_labels3, ""%"")"
+"0","bar_labels5 <- replace(bar_labels4, c(11:59), NA)"
