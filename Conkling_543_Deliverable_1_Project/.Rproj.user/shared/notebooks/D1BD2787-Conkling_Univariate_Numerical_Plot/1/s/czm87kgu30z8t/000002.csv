@@ -1,8 +1,0 @@
-"0","bar10 = bar9 + theme("
-"0","  axis.title = element_text(size=14)"
-"0","  , axis.title.y = element_text(vjust = 2)"
-"0",")"
-"0","bar10"
-"2","Warning:"
-"2"," Removed 49 rows containing missing values (geom_text).
-"

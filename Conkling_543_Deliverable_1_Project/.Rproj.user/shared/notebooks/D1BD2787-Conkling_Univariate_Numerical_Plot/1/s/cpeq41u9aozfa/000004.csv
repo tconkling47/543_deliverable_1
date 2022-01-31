@@ -1,4 +1,0 @@
-"0","ggsave('Conkling_Univariate_Numerical_Graph_PUBPOL543.jpg', device = 'jpeg', width = 11, height = 8.5, dpi = 300)"
-"2","Warning:"
-"2"," Removed 49 rows containing missing values (geom_text).
-"

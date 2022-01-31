@@ -1,7 +1,0 @@
-"0","#Load College Scorecard"
-"0","library(readxl)"
-"2","Warning:"
-"2"," package ‘readxl’ was built under R version 4.0.5
-"
-"0","college_scorecard_19_20 <- read.csv(""https://raw.githubusercontent.com/tconkling47/543_deliverable_1/main/college_scorecard_19-20.csv"")"
-"0","View(college_scorecard_19_20)"

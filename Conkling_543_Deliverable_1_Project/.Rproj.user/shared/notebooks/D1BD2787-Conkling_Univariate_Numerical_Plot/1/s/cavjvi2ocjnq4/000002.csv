@@ -1,4 +1,0 @@
-"0","bar3 = base + geom_bar(stat = ""identity"",color='grey90',"
-"0","                      aes(fill=PercentCum<0.51), "
-"0","                      show.legend = F) + coord_flip()"
-"0","bar3"

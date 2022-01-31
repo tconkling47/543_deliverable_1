@@ -1,8 +1,0 @@
-"0","colleges_simplified <- college_scorecard_19_20 %>%"
-"0","  select(INSTNM, CITY, STABBR) %>%"
-"0","  mutate(college_count=1)"
-"0","colleges_by_state = aggregate(data=colleges_simplified,"
-"0","                              college_count~STABBR,"
-"0","                              FUN=sum)"
-"0","#order the table from large to small"
-"0","colleges_by_state=colleges_by_state[order(-colleges_by_state$college_count),]"

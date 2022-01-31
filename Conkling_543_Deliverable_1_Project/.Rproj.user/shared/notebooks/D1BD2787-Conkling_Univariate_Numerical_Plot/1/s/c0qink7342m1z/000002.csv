@@ -1,9 +1,0 @@
-"0","bar9 = bar8 + geom_text(hjust= 0,"
-"0","                        vjust = 0.3,"
-"0","                        size = 3,"
-"0","                        fontface = ""bold"","
-"0","                        aes(label = bar_labels5))"
-"0","bar9"
-"2","Warning:"
-"2"," Removed 49 rows containing missing values (geom_text).
-"
